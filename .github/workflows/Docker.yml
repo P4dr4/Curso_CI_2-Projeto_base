@@ -29,3 +29,4 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: pedroaccarini/go_app_ci_sample:${{ github.ref_name }}
+
