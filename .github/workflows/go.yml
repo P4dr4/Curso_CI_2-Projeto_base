@@ -19,7 +19,8 @@ jobs:
     strategy:
       matrix:
         go_version: ['1.18', '1.17', '>=1.18']
-        os: ['ubuntu-latest', 'ubuntu-22.04']
+        os: ['ubuntu-latest']
+
     steps:
     - uses: actions/checkout@v3
 
@@ -43,11 +44,18 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: ['ubuntu-latest', 'ubuntu-22.04']
+        os: ['ubuntu-latest']
+
     steps:
     - uses: actions/checkout@v3
     - name: Build
       run: go build -v main.go
+      
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v4.3.2
+      with:
+        name: programOnGo
+        path: main
 
   docker:
     needs: build
